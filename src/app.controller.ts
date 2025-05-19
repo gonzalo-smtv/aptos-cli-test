@@ -6,7 +6,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  test() {
-    return this.appService.test();
+  aptos() {
+    return this.appService.aptos();
   }
 }

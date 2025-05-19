@@ -1,9 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { exec } from 'child_process';
+const { exec } = require('child_process');
 
-function execPromise(
-  command: string,
-): Promise<{ stdout: string; stderr: string }> {
+/**
+ * Function to execute a command in a Promise
+ * @param {string} command - The command to execute
+ * @returns {Promise<{stdout: string, stderr: string}>} - Promise with stdout and stderr
+ */
+function execPromise(command) {
   return new Promise((resolve, reject) => {
     exec(command, (error, stdout, stderr) => {
       if (error) {
@@ -15,11 +17,10 @@ function execPromise(
   });
 }
 
-@Injectable()
-export class AppService {
-  async aptos() {
-    console.log('aptos');
-    const command = 'aptos --version';
+// Self-executing async function to use await
+(async function () {
+  try {
+    const command = 'aptos';
     console.log(`Executing command: ${command}`);
 
     const result = await execPromise(command);
@@ -31,7 +32,7 @@ export class AppService {
       console.log('--- STDERR ---');
       console.log(result.stderr);
     }
-
-    return result;
+  } catch (error) {
+    console.error('Error executing command:', error.message);
   }
-}
+})();
