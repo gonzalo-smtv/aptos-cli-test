@@ -67,5 +67,3 @@ node test.js
 The `@aptos-labs/ts-sdk` package has a dependency on `@aptos-labs/aptos-cli`, which registers an executable in `node_modules/.bin/aptos`. When the application runs the `aptos` command, this executable is found and executed, which then attempts to download and install the actual CLI binary.
 
 The automatic installation mechanism is a common pattern in JavaScript/TypeScript SDKs that depend on external CLI tools, making it easier for developers to get started without manually installing additional dependencies.
-
-curl -L -o /tmp/aptos.zip https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-v7.3.0/aptos-cli-7.3.0-Ubuntu-22.04-x86_64.zip
